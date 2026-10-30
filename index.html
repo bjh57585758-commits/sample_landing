@@ -419,6 +419,15 @@ footer{padding:36px 0;background:#2b2b2b;color:#bbb;font-size:15px;line-height:1
       if(window.fbq)fbq("trackCustom","CTAClick",{position:a.dataset.pos});
     });
   });
+
+  // 자주 묻는 질문: 질문을 펼칠 때마다 수집 (접을 때는 제외)
+  document.querySelectorAll("details").forEach(function(d,i){
+    d.addEventListener("toggle",function(){
+      if(!d.open) return;
+      var s=d.querySelector("summary");
+      track("FAQ Opened",{question:(s.textContent||"").trim(), index:i+1, site:"care-hero-landing"});
+    });
+  });
 })();
 </script>
 </body>
